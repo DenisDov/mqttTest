@@ -8,11 +8,14 @@ export const createMqttClient = () => {
   client.on('connect', () => {
     console.log('Connected to MQTT broker');
     client.subscribe('presence', err => {
-      if (err) {
-        console.error('Subscription error:', err);
-      } else {
+      if (!err) {
         console.log('Subscribed to presence topic');
         client.publish('presence', 'Hello mqtt');
+      }
+    });
+    client.subscribe('your/topic', err => {
+      if (!err) {
+        console.log('Subscribed to topic');
       }
     });
   });
