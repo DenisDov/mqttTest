@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Button} from 'react-native';
+import {Text, Button} from 'react-native';
 import {useMqttClient} from '../hooks/use-mqqt';
 
 const MqttComponent = () => {
