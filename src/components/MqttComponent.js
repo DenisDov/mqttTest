@@ -1,16 +1,9 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {View, Text, Button} from 'react-native';
-import {createMqttClient} from '../utils/mqtt-client';
+import {useMqttClient} from '../hooks/use-mqqt';
 
 const MqttComponent = () => {
-  const client = createMqttClient();
-
-  useEffect(() => {
-    // Clean up the client on component unmount
-    return () => {
-      client.end();
-    };
-  }, [client]);
+  const client = useMqttClient();
 
   return (
     <View>
