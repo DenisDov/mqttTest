@@ -1,12 +1,9 @@
 import {connect} from 'mqtt';
 
-// https://www.hivemq.com/demos/websocket-client/
-const mqttUrl = 'wss://mqtt-dashboard.com:8884/mqtt'; // WebSocket URL
+const mqttUrl = 'ws://broker.hivemq.com:8000/mqtt'; // WebSocket URL for Mosquitto test server
 
 export const createMqttClient = () => {
-  const client = connect(mqttUrl, {
-    clientId: 'clientId-bRGDUtDpOu',
-  });
+  const client = connect(mqttUrl);
 
   client.on('connect', () => {
     console.log('Connected to MQTT broker');
