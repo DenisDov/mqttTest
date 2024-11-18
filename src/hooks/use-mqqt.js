@@ -11,17 +11,22 @@ export const useMqttClient = () => {
 
     mqttClient.on('connect', () => {
       console.log('Connected to MQTT broker');
-      mqttClient.subscribe('presence', err => {
-        if (!err) {
-          console.log('Subscribed to presence topic');
-          mqttClient.publish('presence', 'Hello mqtt');
-        }
-      });
-      mqttClient.subscribe('your/topic', err => {
-        if (!err) {
-          console.log('Subscribed to topic');
-        }
-      });
+
+      const subscribeToTopic = topic => {
+        mqttClient.subscribe(topic, err => {
+          if (!err) {
+            console.log(`Subscribed to ${topic} topic`);
+            if (topic === 'presence') {
+              mqttClient.publish('presence', 'Hello mqtt');
+            }
+          } else {
+            console.error(`Failed to subscribe to ${topic}:`, err);
+          }
+        });
+      };
+
+      subscribeToTopic('presence');
+      subscribeToTopic('gps/tracker');
     });
 
     mqttClient.on('message', (topic, message) => {

@@ -9,8 +9,8 @@ const MqttComponent = () => {
     <View>
       <Text>MQTT Client is running...</Text>
       <Button
-        title="Send Message"
-        onPress={() => client.publish('testtopic/1', 'Hello MQTT')}
+        title="SEND COORDINATES"
+        onPress={() => client.publish('gps/tracker', 'lat:123,lon:123')}
       />
     </View>
   );
