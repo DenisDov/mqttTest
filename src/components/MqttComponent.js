@@ -6,13 +6,13 @@ const MqttComponent = () => {
   const {client, status} = useMqttClient();
 
   return (
-    <View>
-      <Text>MQTT Client is {status}</Text>
+    <>
+      <Text>MQTT Client status is {status}</Text>
       <Button
         title="SEND COORDINATES"
         onPress={() => client.publish('gps/tracker', 'lat:123,lon:123')}
       />
-    </View>
+    </>
   );
 };
 
